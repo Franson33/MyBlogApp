@@ -1,9 +1,4 @@
-/**
- * @format
- */
-
 import {Navigation} from 'react-native-navigation';
-import App from './App';
 import {registerScreens} from './src/screens/index';
 
 registerScreens();
@@ -15,13 +10,14 @@ Navigation.events().registerAppLaunchedListener(() => {
         children: [
           {
             component: {
-              name: 'PostsList',
+              name: 'App',
             },
           },
         ],
       },
     },
   });
+
   Navigation.setDefaultOptions({
     topBar: {
       animate: true,
