@@ -3,11 +3,13 @@ import App from '../../App';
 import PostsList from './PostsList';
 import AddPost from './AddPost';
 import ViewPost from './ViewPost';
+import TextButton from '../components/TextButton';
 
 const APP = 'App';
 const POSTS_LIST = 'PostsList';
 const ADD_POST = 'AddPost';
 const VIEW_POST = 'ViewPost';
+const TEXT_BUTTON = 'TextButton';
 
 interface ScreenItemInterface {
   key: string;
@@ -30,6 +32,10 @@ export const screens: ScreenItemInterface[] = new Array(
   {
     key: VIEW_POST,
     Screen: ViewPost,
+  },
+  {
+    key: TEXT_BUTTON,
+    Screen: TextButton,
   },
 );
 

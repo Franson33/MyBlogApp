@@ -10,8 +10,6 @@ const VIewPost = ({
   componentId,
   somePropsToPass,
 }: ViewPostPropsInterface): JSX.Element => {
-  console.log(somePropsToPass);
-
   return (
     <View style={styles.container}>
       <Text>View Post</Text>
