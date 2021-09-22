@@ -23,21 +23,27 @@ Navigation.events().registerAppLaunchedListener(() => {
     },
   });
   Navigation.setDefaultOptions({
-    statusBar: {
-      style: 'dark',
-    },
     topBar: {
       animate: true,
       title: {
         text: 'MyBlog',
         fontSize: 16,
         color: '#fff',
-        fontStyle: 'italic',
-        fontWeight: '600',
+        alignment: 'center',
       },
       background: {
         color: '#000',
       },
+      backButton: {
+        color: '#fff',
+      },
+    },
+    statusBar: {
+      style: 'light',
+    },
+    layout: {
+      fitSystemWindows: 'true',
+      backgroundColor: '#f0f0f0',
     },
   });
 });
