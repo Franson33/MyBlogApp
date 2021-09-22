@@ -2,10 +2,14 @@ import React from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
 import PostsList from './src/screens/PostsList';
 
-const App = (): JSX.Element => {
+interface AppPropsInterface {
+  componentId: string;
+}
+
+const App = ({componentId}: AppPropsInterface): JSX.Element => {
   return (
     <SafeAreaView style={styles.safe}>
-      <PostsList />
+      <PostsList componentId={componentId} />
     </SafeAreaView>
   );
 };
