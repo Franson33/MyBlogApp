@@ -13,7 +13,7 @@ const TEXT_BUTTON = 'TextButton';
 
 interface ScreenItemInterface {
   key: string;
-  Screen: () => JSX.Element;
+  Screen: any;
 }
 
 export const screens: ScreenItemInterface[] = new Array(

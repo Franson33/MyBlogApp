@@ -1,15 +1,12 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
+import {NavigationComponentProps} from 'react-native-navigation';
 
-interface ViewPostPropsInterface {
-  componentId: string;
+interface ViewPostPropsInterface extends NavigationComponentProps {
   somePropsToPass?: string;
 }
 
-const VIewPost = ({
-  componentId,
-  somePropsToPass,
-}: ViewPostPropsInterface): JSX.Element => {
+const VIewPost = ({somePropsToPass}: ViewPostPropsInterface): JSX.Element => {
   return (
     <View style={styles.container}>
       <Text>View Post</Text>

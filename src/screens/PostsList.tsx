@@ -1,26 +1,23 @@
 import React, {useEffect} from 'react';
-import {Navigation} from 'react-native-navigation';
+import {
+  Navigation,
+  NavigationFunctionComponent,
+  NavigationComponentProps,
+} from 'react-native-navigation';
 import {View, Text, StyleSheet} from 'react-native';
 import {pushToScreen} from '../navigation';
 
-interface PostsListPropsInterface {
-  componentId: string;
-}
+interface PostsListPropsInterface extends NavigationComponentProps {}
 
-const PostsList = ({componentId}: PostsListPropsInterface): JSX.Element => {
+const PostsList = ({
+  componentId,
+}: PostsListPropsInterface): NavigationFunctionComponent<PostsListPropsInterface> => {
   useEffect(() => {
-    const listener = {
-      componentDidAppear: () => {
-        console.log('RNN', `componentDidAppear`);
-      },
-      componentDidDisappear: () => {
-        console.log('RNN', `componentDidDisappear`);
-      },
-    };
-    const unsubscribe = Navigation.events().registerComponentListener(
-      listener,
-      componentId,
-    );
+    const unsubscribe =
+      Navigation.events().registerNavigationButtonPressedListener(
+        ({buttonId}) => console.log(buttonId),
+      );
+
     return () => {
       unsubscribe.remove();
     };
@@ -51,20 +48,22 @@ const PostsList = ({componentId}: PostsListPropsInterface): JSX.Element => {
   );
 };
 
-PostsList.options = {
-  topBar: {
-    rightButtons: [
-      {
-        id: 'posts_list.add',
-        component: {
-          name: 'TextButton',
-          passProps: {
-            name: 'Add',
+PostsList.options = ({}) => {
+  return {
+    topBar: {
+      rightButtons: [
+        {
+          id: 'posts_list.add',
+          component: {
+            name: 'TextButton',
+            passProps: {
+              name: 'Add',
+            },
           },
         },
-      },
-    ],
-  },
+      ],
+    },
+  };
 };
 
 const styles = StyleSheet.create({
