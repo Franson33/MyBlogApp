@@ -4,6 +4,7 @@ import {NavigationComponentProps} from 'react-native-navigation';
 
 interface ViewPostPropsInterface extends NavigationComponentProps {
   somePropsToPass?: string;
+  screenTitle?: string;
 }
 
 const VIewPost = ({somePropsToPass}: ViewPostPropsInterface): JSX.Element => {
@@ -13,6 +14,16 @@ const VIewPost = ({somePropsToPass}: ViewPostPropsInterface): JSX.Element => {
       <Text>{somePropsToPass}</Text>
     </View>
   );
+};
+
+VIewPost.options = ({screenTitle}: ViewPostPropsInterface) => {
+  return {
+    topBar: {
+      title: {
+        text: screenTitle,
+      },
+    },
+  };
 };
 
 const styles = StyleSheet.create({

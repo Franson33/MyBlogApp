@@ -1,25 +1,36 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {TouchableOpacity, Text, StyleSheet} from 'react-native';
+import {NavigationComponentProps} from 'react-native-navigation';
+import {pushToScreen} from '../navigation';
 
-interface TextButtonPropsInterface {
-  name: string;
+interface TextButtonPropsInterface extends NavigationComponentProps {
+  name?: string;
+  parentId?: string;
 }
 
-const TextButton = ({name}: TextButtonPropsInterface) => {
+const TextButton = ({name, parentId}: TextButtonPropsInterface) => {
+  console.log(name, parentId);
+  const pressHandler = (): void => {
+    pushToScreen(parentId, 'AddPost');
+  };
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>{name}</Text>
-    </View>
+    <TouchableOpacity style={styles.container} onPess={pressHandler}>
+      <Text style={styles.text}>{'Add'}</Text>
+    </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
-    height: '100%',
+    width: 60,
+    height: 60,
+    zIndex: 2,
   },
   text: {
-    color: '#fff',
+    color: '#000',
+    lineHeight: 60,
+    textAlign: 'center',
   },
 });
 

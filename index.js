@@ -24,21 +24,20 @@ Navigation.events().registerAppLaunchedListener(() => {
       title: {
         text: 'MyBlog',
         fontSize: 16,
-        color: '#fff',
+        color: '#000',
         alignment: 'center',
       },
       background: {
-        color: '#000',
+        color: '#fff',
       },
       backButton: {
-        color: '#fff',
+        color: '#000',
       },
     },
     statusBar: {
       style: 'light',
     },
     layout: {
-      fitSystemWindows: 'true',
       backgroundColor: '#f0f0f0',
     },
   });
