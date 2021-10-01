@@ -38,17 +38,21 @@ const PostsList = ({componentId}: PostsListPropsInterface): JSX.Element => {
   );
 };
 
-PostsList.options = {
-  topBar: {
-    rightButtons: [
-      {
-        component: {
-          name: 'TextButton',
+PostsList.options = ({componentId}: any) => {
+  return {
+    topBar: {
+      rightButtons: [
+        {
+          id: 'app.addButton',
+          component: {
+            name: 'TextButton',
+            parentId: componentId,
+          },
+          enabled: true,
         },
-        enabled: true,
-      },
-    ],
-  },
+      ],
+    },
+  };
 };
 
 const styles = StyleSheet.create({

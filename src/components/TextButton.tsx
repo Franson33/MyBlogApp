@@ -15,7 +15,7 @@ const TextButton = ({name, parentId}: TextButtonPropsInterface) => {
   };
 
   return (
-    <TouchableOpacity style={styles.container} onPess={pressHandler}>
+    <TouchableOpacity style={styles.container} onPress={pressHandler}>
       <Text style={styles.text}>{'Add'}</Text>
     </TouchableOpacity>
   );

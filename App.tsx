@@ -1,35 +1,20 @@
-import React from 'react';
-import {SafeAreaView, StyleSheet} from 'react-native';
+import React, {useEffect} from 'react';
+import {View, SafeAreaView, StyleSheet} from 'react-native';
 import {NavigationComponentProps} from 'react-native-navigation';
-import PostsList from './src/screens/PostsList';
+import {pushToScreen} from './src/navigation';
 
 interface AppPropsInterface extends NavigationComponentProps {}
 
 const App = ({componentId}: AppPropsInterface): JSX.Element => {
+  useEffect(() => {
+    pushToScreen(componentId, 'PostsList');
+  }, [componentId]);
+
   return (
     <SafeAreaView style={styles.safe}>
-      <PostsList componentId={componentId} />
+      <View />
     </SafeAreaView>
   );
-};
-
-App.options = ({componentId}: any) => {
-  return {
-    topBar: {
-      rightButtons: [
-        {
-          id: 'app.addButton',
-          component: {
-            name: 'TextButton',
-            passProps: {
-              name: 'Add',
-              parentId: componentId,
-            },
-          },
-        },
-      ],
-    },
-  };
 };
 
 const styles = StyleSheet.create({
