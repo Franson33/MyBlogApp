@@ -46,7 +46,9 @@ PostsList.options = ({componentId}: any) => {
           id: 'app.addButton',
           component: {
             name: 'TextButton',
-            parentId: componentId,
+            passProps: {
+              parentId: componentId,
+            },
           },
           enabled: true,
         },

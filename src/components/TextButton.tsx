@@ -4,15 +4,12 @@ import {NavigationComponentProps} from 'react-native-navigation';
 import {pushToScreen} from '../navigation';
 
 interface TextButtonPropsInterface extends NavigationComponentProps {
-  name?: string;
-  parentId?: string;
+  parentId: string;
 }
 
-const TextButton = ({name, parentId}: TextButtonPropsInterface) => {
-  console.log(name, parentId);
-  const pressHandler = (): void => {
-    pushToScreen(parentId, 'AddPost');
-  };
+const TextButton = ({parentId}: TextButtonPropsInterface) => {
+  console.log(parentId);
+  const pressHandler = (): void => pushToScreen(parentId, 'AddPost');
 
   return (
     <TouchableOpacity style={styles.container} onPress={pressHandler}>
