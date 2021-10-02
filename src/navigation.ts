@@ -14,3 +14,19 @@ export const pushToScreen = (
     },
   });
 };
+
+export const setRootWithStack = (homeScreen: string): void => {
+  Navigation.setRoot({
+    root: {
+      stack: {
+        children: [
+          {
+            component: {
+              name: homeScreen,
+            },
+          },
+        ],
+      },
+    },
+  });
+};

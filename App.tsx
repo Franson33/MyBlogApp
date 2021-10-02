@@ -1,14 +1,14 @@
 import React, {useEffect} from 'react';
 import {View, SafeAreaView, StyleSheet} from 'react-native';
 import {NavigationComponentProps} from 'react-native-navigation';
-import {pushToScreen} from './src/navigation';
+import {setRootWithStack} from './src/navigation';
 
 interface AppPropsInterface extends NavigationComponentProps {}
 
-const App = ({componentId}: AppPropsInterface): JSX.Element => {
+const App = (): JSX.Element => {
   useEffect(() => {
-    pushToScreen(componentId, 'PostsList');
-  }, [componentId]);
+    setRootWithStack('PostsList');
+  }, []);
 
   return (
     <SafeAreaView style={styles.safe}>

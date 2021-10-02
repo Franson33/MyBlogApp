@@ -8,7 +8,6 @@ interface TextButtonPropsInterface extends NavigationComponentProps {
 }
 
 const TextButton = ({parentId}: TextButtonPropsInterface) => {
-  console.log(parentId);
   const pressHandler = (): void => pushToScreen(parentId, 'AddPost');
 
   return (
