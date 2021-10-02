@@ -1,18 +1,20 @@
 import React from 'react';
 import {TouchableOpacity, Text, StyleSheet} from 'react-native';
 import {NavigationComponentProps} from 'react-native-navigation';
-import {pushToScreen} from '../navigation';
+import {showModal, closeModal} from '../navigation';
 
 interface TextButtonPropsInterface extends NavigationComponentProps {
-  parentId: string;
+  name: string;
 }
 
-const TextButton = ({parentId}: TextButtonPropsInterface) => {
-  const pressHandler = (): void => pushToScreen(parentId, 'AddPost');
+const TextButton = ({componentId, name}: TextButtonPropsInterface) => {
+  console.log(componentId);
+
+  const pressHandler = (): void => showModal('AddPost');
 
   return (
     <TouchableOpacity style={styles.container} onPress={pressHandler}>
-      <Text style={styles.text}>{'Add'}</Text>
+      <Text style={styles.text}>{name}</Text>
     </TouchableOpacity>
   );
 };

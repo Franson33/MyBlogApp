@@ -30,3 +30,21 @@ export const setRootWithStack = (homeScreen: string): void => {
     },
   });
 };
+
+export const showModal = (screen: string) => {
+  Navigation.showModal({
+    stack: {
+      children: [
+        {
+          component: {
+            name: screen,
+          },
+        },
+      ],
+    },
+  });
+};
+
+export const closeModal = () => {
+  Navigation.dismissAllModals();
+};

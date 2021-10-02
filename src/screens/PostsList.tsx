@@ -38,7 +38,7 @@ const PostsList = ({componentId}: PostsListPropsInterface): JSX.Element => {
   );
 };
 
-PostsList.options = ({componentId}: any) => {
+PostsList.options = () => {
   return {
     topBar: {
       rightButtons: [
@@ -47,7 +47,7 @@ PostsList.options = ({componentId}: any) => {
           component: {
             name: 'TextButton',
             passProps: {
-              parentId: componentId,
+              name: 'Add',
             },
           },
           enabled: true,
