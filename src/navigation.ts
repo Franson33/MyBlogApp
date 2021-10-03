@@ -15,6 +15,10 @@ export const pushToScreen = (
   });
 };
 
+export const popScreen = (id: string) => {
+  Navigation.pop(id);
+};
+
 export const setRootWithStack = (homeScreen: string): void => {
   Navigation.setRoot({
     root: {

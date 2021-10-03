@@ -1,17 +1,27 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Button, Alert} from 'react-native';
 import {NavigationComponentProps} from 'react-native-navigation';
+import {popScreen} from '../navigation';
 
 interface ViewPostPropsInterface extends NavigationComponentProps {
   somePropsToPass?: string;
   screenTitle?: string;
 }
 
-const VIewPost = ({somePropsToPass}: ViewPostPropsInterface): JSX.Element => {
+const VIewPost = ({
+  componentId,
+  somePropsToPass,
+}: ViewPostPropsInterface): JSX.Element => {
+  const deleteHandler = () => {
+    popScreen(componentId);
+    Alert.alert('The post was deleted!');
+  };
+
   return (
     <View style={styles.container}>
       <Text>View Post</Text>
       <Text>{somePropsToPass}</Text>
+      <Button title={'Delete'} onPress={deleteHandler} />
     </View>
   );
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import {TouchableOpacity, Text, StyleSheet} from 'react-native';
+import {TouchableOpacity, Text, StyleSheet, Alert} from 'react-native';
 import {NavigationComponentProps} from 'react-native-navigation';
 import {showModal, closeModal} from '../navigation';
 import {TopBarButtons} from '../topBarButtonsConstants';
@@ -13,6 +13,11 @@ interface TextButtonPropsInterface extends NavigationComponentProps {
 const TextButton = ({name, enabled}: TextButtonPropsInterface) => {
   const {ADD, SAVE, CANCEL} = TopBarButtons;
 
+  const saveHandler = () => {
+    closeModal();
+    Alert.alert('The post is saved!');
+  };
+
   const pressHandler = (): void | null => {
     switch (name) {
       case ADD:
@@ -20,7 +25,7 @@ const TextButton = ({name, enabled}: TextButtonPropsInterface) => {
       case CANCEL:
         return closeModal();
       case SAVE:
-        return enabled ? console.log('SAVE') : null;
+        return enabled ? saveHandler() : null;
       default:
         return;
     }
@@ -58,7 +63,7 @@ const styles = StyleSheet.create({
     color: '#000',
   },
   textColorDisabled: {
-    color: '#747474',
+    color: '#888787',
   },
 });
 
