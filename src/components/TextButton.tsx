@@ -7,27 +7,39 @@ import {ADD_POST} from '../screens/index';
 
 interface TextButtonPropsInterface extends NavigationComponentProps {
   name: string;
+  enabled?: boolean;
 }
 
-const TextButton = ({name}: TextButtonPropsInterface) => {
+const TextButton = ({name, enabled}: TextButtonPropsInterface) => {
   const {ADD, SAVE, CANCEL} = TopBarButtons;
 
-  const pressHandler = (): void => {
+  const pressHandler = (): void | null => {
     switch (name) {
       case ADD:
         return showModal(ADD_POST);
       case CANCEL:
         return closeModal();
       case SAVE:
-        return;
+        return enabled ? console.log('SAVE') : null;
       default:
         return;
     }
   };
 
   return (
-    <TouchableOpacity style={styles.container} onPress={pressHandler}>
-      <Text style={styles.text}>{name}</Text>
+    <TouchableOpacity
+      activeOpacity={!enabled && name === SAVE ? 1 : 0.5}
+      style={styles.container}
+      onPress={pressHandler}>
+      <Text
+        style={[
+          styles.text,
+          !enabled && name === SAVE
+            ? styles.textColorDisabled
+            : styles.textColorEnabled,
+        ]}>
+        {name}
+      </Text>
     </TouchableOpacity>
   );
 };
@@ -39,9 +51,14 @@ const styles = StyleSheet.create({
     zIndex: 2,
   },
   text: {
-    color: '#000',
     lineHeight: 60,
     textAlign: 'center',
+  },
+  textColorEnabled: {
+    color: '#000',
+  },
+  textColorDisabled: {
+    color: '#747474',
   },
 });
 

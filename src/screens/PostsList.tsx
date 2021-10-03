@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import {Navigation, NavigationComponentProps} from 'react-native-navigation';
+import React from 'react';
+import {NavigationComponentProps} from 'react-native-navigation';
 import {View, Text, StyleSheet} from 'react-native';
 import {pushToScreen} from '../navigation';
 import {TopBarButtons} from '../topBarButtonsConstants';
@@ -8,23 +8,6 @@ import {VIEW_POST} from './index';
 interface PostsListPropsInterface extends NavigationComponentProps {}
 
 const PostsList = ({componentId}: PostsListPropsInterface): JSX.Element => {
-  useEffect(() => {
-    const listener = {
-      navigationButtonPressed({buttonId}: any) {
-        console.log(buttonId);
-      },
-    };
-
-    const unsubscribe = Navigation.events().registerComponentListener(
-      listener,
-      componentId,
-    );
-
-    return () => {
-      unsubscribe.remove();
-    };
-  }, [componentId]);
-
   const pressHandler = (): void =>
     pushToScreen(componentId, VIEW_POST, {
       somePropsToPass: 'Message',
@@ -53,7 +36,7 @@ PostsList.options = () => {
               name: ADD,
             },
           },
-          enabled: true,
+          enabled: false,
         },
       ],
     },

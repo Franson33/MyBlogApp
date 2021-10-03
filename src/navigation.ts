@@ -48,3 +48,7 @@ export const showModal = (screen: string) => {
 export const closeModal = () => {
   Navigation.dismissAllModals();
 };
+
+export const updateProps = (id: string, propsObj: any) => {
+  Navigation.updateProps(id, propsObj);
+};

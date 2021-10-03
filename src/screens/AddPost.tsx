@@ -1,11 +1,30 @@
-import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {View, Text, StyleSheet, TextInput} from 'react-native';
 import {TopBarButtons} from '../topBarButtonsConstants';
+import {updateProps} from '../navigation';
 
 const AddPost = (): JSX.Element => {
+  const [inputValue, setInputValue] = useState('');
+  const inputValueHandler = (text: string): void => {
+    setInputValue(text);
+  };
+
+  useEffect(() => {
+    updateProps('addPost.save', {
+      enabled: !!inputValue,
+    });
+  }, [inputValue]);
+
   return (
     <View style={styles.container}>
       <Text>Add Post</Text>
+      <TextInput
+        placeholder={'Add your post!'}
+        style={styles.input}
+        multiline={true}
+        value={inputValue}
+        onChangeText={inputValueHandler}
+      />
     </View>
   );
 };
@@ -25,18 +44,18 @@ AddPost.options = () => {
               name: CANCEL,
             },
           },
-          enabled: true,
         },
       ],
       rightButtons: [
         {
+          id: 'saveButton',
           component: {
+            id: 'addPost.save',
             name: 'TextButton',
             passProps: {
               name: SAVE,
             },
           },
-          enabled: true,
         },
       ],
     },
@@ -47,6 +66,12 @@ const styles = StyleSheet.create({
   container: {
     paddingTop: 20,
     paddingHorizontal: 20,
+  },
+  input: {
+    height: 75,
+    borderBottomWidth: 1,
+    borderBottomColor: '#000',
+    textAlignVertical: 'top',
   },
 });
 
