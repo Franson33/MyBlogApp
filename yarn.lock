@@ -3202,6 +3202,11 @@ hoist-non-react-statics@3.x.x:
   dependencies:
     react-is "^16.7.0"
 
+hoist-non-react-statics@^2.5.5:
+  version "2.5.5"
+  resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.5.5.tgz#c5903cf409c0dfd908f388e619d86b9c1174cb47"
+  integrity sha512-rqcy4pJo55FTTLWt+bU8ukscqHeE/e9KWvsOW2b/a3afxQZhwkQdT1rPPCJ0rYXdj4vNcasY8zHTH+jF/qStxw==
+
 hosted-git-info@^2.1.4:
   version "2.8.9"
   resolved "https://registry.yarnpkg.com/hosted-git-info/-/hosted-git-info-2.8.9.tgz#dffc0bf9a21c02209090f2aa69429e1414daf3f9"
@@ -4257,6 +4262,16 @@ lodash.debounce@^4.0.8:
   resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
   integrity sha1-gteb/zCmfEAF/9XiUVMArZyk168=
 
+lodash.isfunction@^3.0.9:
+  version "3.0.9"
+  resolved "https://registry.yarnpkg.com/lodash.isfunction/-/lodash.isfunction-3.0.9.tgz#06de25df4db327ac931981d1bdb067e5af68d051"
+  integrity sha512-AirXNj15uRIMMPihnkInB4i3NHeb4iBtNg9WRWuK2o31S+ePwwNmDPaTL3o7dTJ+VXNZim7rFs4rxN4YU1oUJw==
+
+lodash.isobjectlike@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/lodash.isobjectlike/-/lodash.isobjectlike-4.0.0.tgz#742c5fc65add27924d3d24191681aa9a17b2b60d"
+  integrity sha1-dCxfxlrdJ5JNPSQZFoGqmheytg0=
+
 lodash.merge@^4.6.2:
   version "4.6.2"
   resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.2.tgz#558aa53b43b661e1925a0afdfa36a9a1085fe57a"
@@ -4702,6 +4717,23 @@ mkdirp@^0.5.1:
   integrity sha512-NKmAlESf6jMGym1++R0Ra7wvhV+wFW63FaSOFPwRahvea0gMUcGUhVeAg/0BC0wiv9ih5NYPB1Wn1UEI1/L+xQ==
   dependencies:
     minimist "^1.2.5"
+
+mobx-react-lite@^3.2.0:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/mobx-react-lite/-/mobx-react-lite-3.2.1.tgz#c549a3722f1eae51a78b12f839311614d5689c58"
+  integrity sha512-hwURgfmP2apX3HQrB55V9DN47kuN3C6KlQvI5UIfJRibXma72C/JudcNt2r9dWjAdFMrcZoz1ivvtXMCkJ2aQA==
+
+mobx-react@^7.0.0:
+  version "7.2.0"
+  resolved "https://registry.yarnpkg.com/mobx-react/-/mobx-react-7.2.0.tgz#241e925e963bb83a31d269f65f9f379e37ecbaeb"
+  integrity sha512-KHUjZ3HBmZlNnPd1M82jcdVsQRDlfym38zJhZEs33VxyVQTvL77hODCArq6+C1P1k/6erEeo2R7rpE7ZeOL7dg==
+  dependencies:
+    mobx-react-lite "^3.2.0"
+
+mobx@^6.0.1:
+  version "6.3.3"
+  resolved "https://registry.yarnpkg.com/mobx/-/mobx-6.3.3.tgz#a3006c56243b1c7ea4ee671a66f963b9f43cf1af"
+  integrity sha512-JoNU50rO6d1wHwKPJqKq4rmUMbYnI9CsJmBo+Cu4exBYenFvIN77LWrZENpzW6reZPADtXMmB1DicbDSfy8Clw==
 
 ms@2.0.0:
   version "2.0.0"
@@ -5490,6 +5522,18 @@ remove-trailing-separator@^1.0.1:
   resolved "https://registry.yarnpkg.com/remove-trailing-separator/-/remove-trailing-separator-1.1.0.tgz#c24bce2a283adad5bc3f58e0d48249b92379d8ef"
   integrity sha1-wkvOKig62tW8P1jg1IJJuSN52O8=
 
+remx@^4.0.108-rc.4:
+  version "4.0.108-rc.4"
+  resolved "https://registry.yarnpkg.com/remx/-/remx-4.0.108-rc.4.tgz#4d13ca399bffa6653d14813b0c1865254f395b7b"
+  integrity sha512-oLoeTGWqigQ24T3Jfu7H8VJwDITDiZffQixVW4eKZBsTAtcato/i24yCkTmt3fGaAOYb1rOpoRKE/Yb8IikXUQ==
+  dependencies:
+    hoist-non-react-statics "^2.5.5"
+    lodash.isfunction "^3.0.9"
+    lodash.isobjectlike "^4.0.0"
+    mobx "^6.0.1"
+    mobx-react "^7.0.0"
+    snyk "^1.192.3"
+
 repeat-element@^1.1.2:
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/repeat-element/-/repeat-element-1.1.4.tgz#be681520847ab58c7568ac75fbfad28ed42d39e9"
@@ -5861,6 +5905,11 @@ snapdragon@^0.8.1:
     source-map "^0.5.6"
     source-map-resolve "^0.5.0"
     use "^3.1.0"
+
+snyk@^1.192.3:
+  version "1.730.0"
+  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.730.0.tgz#d84ba618be1a023b400e3e6a40208213d6c8fa0c"
+  integrity sha512-g5tsuOU8bmNezkobhhhkAT2D0tmWrI1pR4yrU5InFZOLs4Ch9Vz8lnUnfCEVxUftsyXx3dHnSbc+3ncEHnorVw==
 
 source-map-resolve@^0.5.0:
   version "0.5.3"
