@@ -2,15 +2,28 @@ import React from 'react';
 import {TouchableOpacity, Text, StyleSheet} from 'react-native';
 import {NavigationComponentProps} from 'react-native-navigation';
 import {showModal, closeModal} from '../navigation';
+import {TopBarButtons} from '../topBarButtonsConstants';
+import {ADD_POST} from '../screens/index';
 
 interface TextButtonPropsInterface extends NavigationComponentProps {
   name: string;
 }
 
-const TextButton = ({componentId, name}: TextButtonPropsInterface) => {
-  console.log(componentId);
+const TextButton = ({name}: TextButtonPropsInterface) => {
+  const {ADD, SAVE, CANCEL} = TopBarButtons;
 
-  const pressHandler = (): void => showModal('AddPost');
+  const pressHandler = (): void => {
+    switch (name) {
+      case ADD:
+        return showModal(ADD_POST);
+      case CANCEL:
+        return closeModal();
+      case SAVE:
+        return;
+      default:
+        return;
+    }
+  };
 
   return (
     <TouchableOpacity style={styles.container} onPress={pressHandler}>

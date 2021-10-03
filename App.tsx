@@ -2,12 +2,13 @@ import React, {useEffect} from 'react';
 import {View, SafeAreaView, StyleSheet} from 'react-native';
 import {NavigationComponentProps} from 'react-native-navigation';
 import {setRootWithStack} from './src/navigation';
+import {POSTS_LIST} from './src/screens/index';
 
 interface AppPropsInterface extends NavigationComponentProps {}
 
 const App = (): JSX.Element => {
   useEffect(() => {
-    setRootWithStack('PostsList');
+    setRootWithStack(POSTS_LIST);
   }, []);
 
   return (

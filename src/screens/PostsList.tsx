@@ -2,6 +2,8 @@ import React, {useEffect} from 'react';
 import {Navigation, NavigationComponentProps} from 'react-native-navigation';
 import {View, Text, StyleSheet} from 'react-native';
 import {pushToScreen} from '../navigation';
+import {TopBarButtons} from '../topBarButtonsConstants';
+import {VIEW_POST} from './index';
 
 interface PostsListPropsInterface extends NavigationComponentProps {}
 
@@ -24,7 +26,7 @@ const PostsList = ({componentId}: PostsListPropsInterface): JSX.Element => {
   }, [componentId]);
 
   const pressHandler = (): void =>
-    pushToScreen(componentId, 'ViewPost', {
+    pushToScreen(componentId, VIEW_POST, {
       somePropsToPass: 'Message',
       screenTitle: 'Post1',
     });
@@ -39,15 +41,16 @@ const PostsList = ({componentId}: PostsListPropsInterface): JSX.Element => {
 };
 
 PostsList.options = () => {
+  const {ADD} = TopBarButtons;
   return {
     topBar: {
       rightButtons: [
         {
-          id: 'app.addButton',
           component: {
+            id: 'app.addButton',
             name: 'TextButton',
             passProps: {
-              name: 'Add',
+              name: ADD,
             },
           },
           enabled: true,

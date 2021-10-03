@@ -5,11 +5,11 @@ import AddPost from './AddPost';
 import ViewPost from './ViewPost';
 import TextButton from '../components/TextButton';
 
-const APP = 'App';
-const POSTS_LIST = 'PostsList';
-const ADD_POST = 'AddPost';
-const VIEW_POST = 'ViewPost';
-const TEXT_BUTTON = 'TextButton';
+export const APP = 'App';
+export const POSTS_LIST = 'PostsList';
+export const ADD_POST = 'AddPost';
+export const VIEW_POST = 'ViewPost';
+export const TEXT_BUTTON = 'TextButton';
 
 interface ScreenItemInterface {
   key: string;

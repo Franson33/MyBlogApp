@@ -1,15 +1,17 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
+import {TopBarButtons} from '../topBarButtonsConstants';
 
 const AddPost = (): JSX.Element => {
   return (
-    <View>
+    <View style={styles.container}>
       <Text>Add Post</Text>
     </View>
   );
 };
 
 AddPost.options = () => {
+  const {CANCEL, SAVE} = TopBarButtons;
   return {
     topBar: {
       title: {
@@ -17,11 +19,10 @@ AddPost.options = () => {
       },
       leftButtons: [
         {
-          id: 'addPost.cancelButton',
           component: {
             name: 'TextButton',
             passProps: {
-              name: 'Cancel',
+              name: CANCEL,
             },
           },
           enabled: true,
@@ -29,11 +30,10 @@ AddPost.options = () => {
       ],
       rightButtons: [
         {
-          id: 'addPost.saveButton',
           component: {
             name: 'TextButton',
             passProps: {
-              name: 'Save',
+              name: SAVE,
             },
           },
           enabled: true,
@@ -43,6 +43,11 @@ AddPost.options = () => {
   };
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    paddingTop: 20,
+    paddingHorizontal: 20,
+  },
+});
 
 export default AddPost;
