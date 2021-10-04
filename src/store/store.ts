@@ -1,6 +1,6 @@
 import * as remx from 'remx';
 
-interface PostValueInterface {
+export interface PostValueInterface {
   id: number;
   title: string;
   text: string;
