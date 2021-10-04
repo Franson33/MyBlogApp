@@ -18,11 +18,15 @@ const initialState: StoreInterface = {
 const state = remx.state(initialState);
 
 const getters = remx.getters({
-  getPosts: () => state.posts,
+  getPosts() {
+    return state.posts;
+  },
 });
 
 const setters = remx.setters({
-  setPosts: (newPosts: PostValueInterface[]) => (state.posts = newPosts),
+  setPosts(newPosts: PostValueInterface[]) {
+    return (state.posts = newPosts);
+  },
 });
 
 export const postsStore = {
