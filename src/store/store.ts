@@ -7,7 +7,7 @@ export interface PostValueInterface {
   image: string;
 }
 
-interface StoreInterface {
+export interface StoreInterface {
   posts: PostValueInterface[];
 }
 
@@ -26,6 +26,9 @@ const getters = remx.getters({
 const setters = remx.setters({
   setPosts(newPosts: PostValueInterface[]) {
     return (state.posts = newPosts);
+  },
+  addPost(newPost: PostValueInterface) {
+    return [...state.posts, newPost];
   },
 });
 

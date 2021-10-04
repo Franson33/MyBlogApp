@@ -1,5 +1,6 @@
 import {Navigation} from 'react-native-navigation';
 import {registerScreens} from './src/screens/index';
+import {registerLoggerForDebug} from 'remx';
 
 registerScreens();
 
@@ -36,3 +37,5 @@ Navigation.events().registerAppLaunchedListener(() => {
     },
   });
 });
+
+registerLoggerForDebug(console.log);
