@@ -3,15 +3,27 @@ import {View, Text, StyleSheet, TextInput} from 'react-native';
 import {TopBarButtons} from '../topBarButtonsConstants';
 import {updateProps} from '../navigation';
 
+interface AddPostLocalStateInterface {
+  title: string;
+  content: string;
+}
+
 const AddPost = (): JSX.Element => {
-  const [inputValue, setInputValue] = useState('');
-  const inputValueHandler = (text: string): void => {
-    setInputValue(text);
+  const [inputValue, setInputValue] = useState<AddPostLocalStateInterface>({
+    title: '',
+    content: '',
+  });
+
+  const inputValueHandler = (text: string, field: string): void => {
+    setInputValue({
+      ...inputValue,
+      [field]: text,
+    });
   };
 
   useEffect(() => {
     updateProps('addPost.save', {
-      enabled: !!inputValue,
+      enabled: !!inputValue.content || !!inputValue.title ? true : false,
     });
   }, [inputValue]);
 
@@ -19,11 +31,17 @@ const AddPost = (): JSX.Element => {
     <View style={styles.container}>
       <Text>Add Post</Text>
       <TextInput
-        placeholder={'Add your post!'}
-        style={styles.input}
+        placeholder={'Add a Catchy Title!'}
+        style={styles.inputTitle}
+        value={inputValue.title}
+        onChangeText={newValue => inputValueHandler(newValue, 'title')}
+      />
+      <TextInput
+        placeholder={'This is the beginning of a great post!'}
+        style={styles.inputContent}
         multiline={true}
-        value={inputValue}
-        onChangeText={inputValueHandler}
+        value={inputValue.content}
+        onChangeText={newValue => inputValueHandler(newValue, 'content')}
       />
     </View>
   );
@@ -67,7 +85,13 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     paddingHorizontal: 20,
   },
-  input: {
+  inputTitle: {
+    height: 35,
+    marginTop: 10,
+    borderTopWidth: 1,
+    borderBottomColor: '#000',
+  },
+  inputContent: {
     height: 75,
     borderBottomWidth: 1,
     borderBottomColor: '#000',
