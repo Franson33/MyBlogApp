@@ -3,7 +3,7 @@ import {View, Text, StyleSheet, TextInput} from 'react-native';
 import {TopBarButtons} from '../topBarButtonsConstants';
 import {updateProps} from '../navigation';
 
-interface AddPostLocalStateInterface {
+export interface AddPostLocalStateInterface {
   title: string;
   content: string;
 }
@@ -27,9 +27,15 @@ const AddPost = (): JSX.Element => {
     });
   }, [inputValue]);
 
+  useEffect(() => {
+    updateProps('addPost.save', {
+      newPost: inputValue,
+    });
+  }, [inputValue]);
+
   return (
     <View style={styles.container}>
-      <Text>Add Post</Text>
+      <Text style={styles.title}>Add Post</Text>
       <TextInput
         placeholder={'Add a Catchy Title!'}
         style={styles.inputTitle}
@@ -85,17 +91,21 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     paddingHorizontal: 20,
   },
+  title: {
+    marginBottom: 10,
+  },
   inputTitle: {
-    height: 35,
-    marginTop: 10,
-    borderTopWidth: 1,
-    borderBottomColor: '#000',
+    height: 40,
+    paddingBottom: 15,
+    backgroundColor: '#fff',
+    borderRadius: 5,
   },
   inputContent: {
     height: 75,
-    borderBottomWidth: 1,
-    borderBottomColor: '#000',
+    marginTop: 10,
     textAlignVertical: 'top',
+    backgroundColor: '#fff',
+    borderRadius: 5,
   },
 });
 

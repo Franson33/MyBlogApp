@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {NavigationComponentProps} from 'react-native-navigation';
 import {View, Text, StyleSheet} from 'react-native';
 import {useConnect} from 'remx';
-import {pushToScreen} from '../navigation';
+import {pushToScreen, updateProps} from '../navigation';
 import {TopBarButtons} from '../topBarButtonsConstants';
 import {VIEW_POST} from './index';
 import * as postsActions from '../store/actions';
@@ -20,8 +20,14 @@ const PostsList = ({componentId}: PostsListPropsInterface): JSX.Element => {
   const posts = useConnect(postsStore.getPosts, []);
 
   useEffect(() => {
+    updateProps('addPost.save', {
+      postsLength: posts?.length,
+    });
+  }, [posts]);
+
+  useEffect(() => {
     postsActions.fetchPosts();
-  }, []);
+  }, [posts]);
 
   return (
     <View style={styles.container}>

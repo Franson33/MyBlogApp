@@ -4,16 +4,32 @@ import {NavigationComponentProps} from 'react-native-navigation';
 import {showModal, closeModal} from '../navigation';
 import {TopBarButtons} from '../topBarButtonsConstants';
 import {ADD_POST} from '../screens/index';
+import * as postsActions from '../store/actions';
+import {AddPostLocalStateInterface} from '../screens/AddPost';
 
 interface TextButtonPropsInterface extends NavigationComponentProps {
   name: string;
   enabled?: boolean;
+  postsLength?: number;
+  newPost?: AddPostLocalStateInterface;
 }
 
-const TextButton = ({name, enabled}: TextButtonPropsInterface) => {
+const TextButton = ({
+  name,
+  enabled,
+  postsLength,
+  newPost,
+}: TextButtonPropsInterface) => {
   const {ADD, SAVE, CANCEL} = TopBarButtons;
 
   const saveHandler = () => {
+    const randomImageNumber = Math.floor(Math.random() * 500 + 1);
+    postsActions.addPost({
+      id: (postsLength ?? 0) + 1,
+      title: newPost?.title ?? '',
+      text: newPost?.content ?? '',
+      image: `https://picsum.photos/200/200/?image=${randomImageNumber}`,
+    });
     closeModal();
     Alert.alert('The post is saved!');
   };
