@@ -1,17 +1,24 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, StyleSheet, TextInput} from 'react-native';
+import {NavigationComponentProps} from 'react-native-navigation';
 import {TopBarButtons} from '../topBarButtonsConstants';
 import {updateProps} from '../navigation';
+import {PostValueInterface} from '../store/store';
+import {TEXT_BUTTON} from './index';
 
 export interface AddPostLocalStateInterface {
   title: string;
   content: string;
 }
 
-const AddPost = (): JSX.Element => {
+interface AddPostPropsInterface extends NavigationComponentProps {
+  postToEdit?: PostValueInterface;
+}
+
+const AddPost = ({postToEdit}: AddPostPropsInterface): JSX.Element => {
   const [inputValue, setInputValue] = useState<AddPostLocalStateInterface>({
-    title: '',
-    content: '',
+    title: postToEdit?.title ?? '',
+    content: postToEdit?.text ?? '',
   });
 
   const inputValueHandler = (text: string, field: string): void => {
@@ -53,7 +60,7 @@ const AddPost = (): JSX.Element => {
   );
 };
 
-AddPost.options = () => {
+AddPost.options = ({postToEdit}: AddPostPropsInterface) => {
   const {CANCEL, SAVE} = TopBarButtons;
   return {
     topBar: {
@@ -63,7 +70,7 @@ AddPost.options = () => {
       leftButtons: [
         {
           component: {
-            name: 'TextButton',
+            name: TEXT_BUTTON,
             passProps: {
               name: CANCEL,
             },
@@ -75,9 +82,10 @@ AddPost.options = () => {
           id: 'saveButton',
           component: {
             id: 'addPost.save',
-            name: 'TextButton',
+            name: TEXT_BUTTON,
             passProps: {
               name: SAVE,
+              postToEdit: postToEdit,
             },
           },
         },
@@ -101,7 +109,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   inputContent: {
-    height: 75,
+    height: 150,
     marginTop: 10,
     textAlignVertical: 'top',
     backgroundColor: '#fff',

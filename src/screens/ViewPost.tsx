@@ -4,6 +4,8 @@ import {NavigationComponentProps} from 'react-native-navigation';
 import {popScreen} from '../navigation';
 import {PostValueInterface} from '../store/store';
 import {deletePost} from '../store/actions';
+import {TEXT_BUTTON} from './index';
+import {TopBarButtons} from '../topBarButtonsConstants';
 
 interface ViewPostPropsInterface extends NavigationComponentProps {
   post: PostValueInterface;
@@ -12,8 +14,6 @@ interface ViewPostPropsInterface extends NavigationComponentProps {
 
 const VIewPost = ({componentId, post}: ViewPostPropsInterface): JSX.Element => {
   const {id, text, image} = post;
-
-  console.log(post);
 
   const deleteHandler = () => {
     deletePost(id);
@@ -32,12 +32,25 @@ const VIewPost = ({componentId, post}: ViewPostPropsInterface): JSX.Element => {
   );
 };
 
-VIewPost.options = ({screenTitle}: ViewPostPropsInterface) => {
+VIewPost.options = ({screenTitle, post}: ViewPostPropsInterface) => {
+  const {EDIT} = TopBarButtons;
   return {
     topBar: {
       title: {
         text: screenTitle,
       },
+      rightButtons: [
+        {
+          component: {
+            id: 'viewPost.edit',
+            name: TEXT_BUTTON,
+            passProps: {
+              name: EDIT,
+              postToEdit: post,
+            },
+          },
+        },
+      ],
     },
   };
 };

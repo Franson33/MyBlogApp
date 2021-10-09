@@ -35,13 +35,14 @@ export const setRootWithStack = (homeScreen: string): void => {
   });
 };
 
-export const showModal = (screen: string) => {
+export const showModal = (screen: string, propsObj?: any) => {
   Navigation.showModal({
     stack: {
       children: [
         {
           component: {
             name: screen,
+            passProps: propsObj,
           },
         },
       ],

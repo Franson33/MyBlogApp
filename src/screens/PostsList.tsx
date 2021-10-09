@@ -7,6 +7,7 @@ import {TopBarButtons} from '../topBarButtonsConstants';
 import * as postsActions from '../store/actions';
 import {postsStore} from '../store/store';
 import PostListItem from '../components/PostListItem';
+import {TEXT_BUTTON} from './index';
 
 interface PostsListPropsInterface extends NavigationComponentProps {}
 
@@ -42,7 +43,7 @@ PostsList.options = () => {
         {
           component: {
             id: 'app.addButton',
-            name: 'TextButton',
+            name: TEXT_BUTTON,
             passProps: {
               name: ADD,
             },

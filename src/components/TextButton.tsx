@@ -6,12 +6,14 @@ import {TopBarButtons} from '../topBarButtonsConstants';
 import {ADD_POST} from '../screens/index';
 import * as postsActions from '../store/actions';
 import {AddPostLocalStateInterface} from '../screens/AddPost';
+import {PostValueInterface} from '../store/store';
 
 interface TextButtonPropsInterface extends NavigationComponentProps {
   name: string;
   enabled?: boolean;
   postsLength?: number;
   newPost?: AddPostLocalStateInterface;
+  postToEdit?: PostValueInterface;
 }
 
 const TextButton = ({
@@ -19,20 +21,23 @@ const TextButton = ({
   enabled,
   postsLength,
   newPost,
+  postToEdit,
 }: TextButtonPropsInterface) => {
-  const {ADD, SAVE, CANCEL} = TopBarButtons;
+  const {ADD, SAVE, CANCEL, EDIT} = TopBarButtons;
 
   const saveHandler = () => {
     const randomImageNumber = Math.floor(Math.random() * 500 + 1);
     postsActions.addPost({
-      id: (postsLength ?? 0) + 1,
-      title: newPost?.title ?? '',
-      text: newPost?.content ?? '',
-      image: `https://picsum.photos/200/200/?image=${randomImageNumber}`,
+      id: postToEdit ? postToEdit.id : (postsLength ?? 0) + 1,
+      title: postToEdit ? postToEdit.title : newPost?.title ?? '',
+      text: postToEdit ? postToEdit.text : newPost?.content ?? '',
+      image: postToEdit
+        ? postToEdit?.image
+        : `https://picsum.photos/200/200/?image=${randomImageNumber}`,
     });
     postsActions.fetchPosts();
     closeModal();
-    Alert.alert('The post is saved!');
+    Alert.alert(postToEdit ? 'The changes is saved!' : 'The post is saved!');
   };
 
   const pressHandler = (): void | null => {
@@ -43,6 +48,8 @@ const TextButton = ({
         return closeModal();
       case SAVE:
         return enabled ? saveHandler() : null;
+      case EDIT:
+        return showModal(ADD_POST, {postToEdit: postToEdit});
       default:
         return;
     }
