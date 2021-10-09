@@ -5,11 +5,11 @@ import {pushToScreen} from '../navigation';
 import {VIEW_POST} from '../screens/index';
 
 const PostListItem = (id: string, item: PostValueInterface) => {
-  const {title, text, image} = item;
+  const {title, image} = item;
 
   const pressHandler = (): void =>
     pushToScreen(id, VIEW_POST, {
-      somePropsToPass: text,
+      post: item,
       screenTitle: title,
     });
 

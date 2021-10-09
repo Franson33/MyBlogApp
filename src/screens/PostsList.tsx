@@ -47,7 +47,6 @@ PostsList.options = () => {
               name: ADD,
             },
           },
-          enabled: false,
         },
       ],
     },

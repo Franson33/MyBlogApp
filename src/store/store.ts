@@ -30,6 +30,9 @@ const setters = remx.setters({
   addPost(newPost: PostValueInterface) {
     return [...state.posts, newPost];
   },
+  deletePost(id: number) {
+    return (state.posts = state.posts.filter(post => post.id !== id));
+  },
 });
 
 export const postsStore = {

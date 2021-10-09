@@ -20,3 +20,10 @@ export const addPost = async (newPost: PostValueInterface) => {
   const postToAdd = await response.json();
   postsStore.addPost(postToAdd);
 };
+
+export const deletePost = async (id: number) => {
+  await fetch(baseUrl + `/${id}`, {
+    method: 'DELETE',
+  });
+  postsStore.deletePost(id);
+};

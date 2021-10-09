@@ -8,13 +8,6 @@
       "image": "http://picsum.photos/200/200/?image=1"
     },
     {
-      "id": 2,
-      "title": "Post 2",
-      "text": "It is one of the blessings of old friends that you can afford to be stupid with them.",
-      "author": "Post 2 text",
-      "image": "http://picsum.photos/200/200/?image=2"
-    },
-    {
       "id": 3,
       "title": "TestPost",
       "text": "This post is made to test my code!",
