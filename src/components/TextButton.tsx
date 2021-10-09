@@ -30,6 +30,7 @@ const TextButton = ({
       text: newPost?.content ?? '',
       image: `https://picsum.photos/200/200/?image=${randomImageNumber}`,
     });
+    postsActions.fetchPosts();
     closeModal();
     Alert.alert('The post is saved!');
   };

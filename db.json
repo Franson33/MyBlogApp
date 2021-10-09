@@ -19,6 +19,18 @@
       "title": "TestPost",
       "text": "This post is made to test my code!",
       "image": "https://picsum.photos/200/200/?image=241"
+    },
+    {
+      "id": 4,
+      "title": "TestNumberTwo",
+      "text": "This is my test post number two, made with purpose to test that my code is working well!",
+      "image": "https://picsum.photos/200/200/?image=473"
+    },
+    {
+      "id": 5,
+      "title": "NumberThree",
+      "text": "One more test!",
+      "image": "https://picsum.photos/200/200/?image=490"
     }
   ]
 }
