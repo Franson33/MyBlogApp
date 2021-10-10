@@ -21,6 +21,9 @@ const getters = remx.getters({
   getPosts() {
     return state.posts;
   },
+  getPost(id: number) {
+    return state.posts.filter(post => post.id === id)[0];
+  },
 });
 
 const setters = remx.setters({

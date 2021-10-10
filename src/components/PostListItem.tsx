@@ -4,12 +4,12 @@ import {PostValueInterface} from '../store/store';
 import {pushToScreen} from '../navigation';
 import {VIEW_POST} from '../screens/index';
 
-const PostListItem = (id: string, item: PostValueInterface) => {
-  const {title, image} = item;
+const PostListItem = (parentComponentId: string, item: PostValueInterface) => {
+  const {id, title, image} = item;
 
   const pressHandler = (): void =>
-    pushToScreen(id, VIEW_POST, {
-      post: item,
+    pushToScreen(parentComponentId, VIEW_POST, {
+      postId: id,
       screenTitle: title,
     });
 

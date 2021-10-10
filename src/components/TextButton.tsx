@@ -25,6 +25,8 @@ const TextButton = ({
 }: TextButtonPropsInterface) => {
   const {ADD, SAVE, CANCEL, EDIT} = TopBarButtons;
 
+  console.log('From edit button', postToEdit);
+
   const saveHandler = () => {
     const randomImageNumber = Math.floor(Math.random() * 500 + 1);
     postsActions.addPost({
@@ -49,7 +51,9 @@ const TextButton = ({
       case SAVE:
         return enabled ? saveHandler() : null;
       case EDIT:
-        return showModal(ADD_POST, {postToEdit: postToEdit});
+        return showModal(ADD_POST, {
+          postToEdit: postToEdit,
+        });
       default:
         return;
     }

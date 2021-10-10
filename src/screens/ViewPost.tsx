@@ -1,22 +1,36 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View, Text, Image, StyleSheet, Button, Alert} from 'react-native';
 import {NavigationComponentProps} from 'react-native-navigation';
 import {popScreen} from '../navigation';
 import {PostValueInterface} from '../store/store';
+import {useConnect} from 'remx';
+import {postsStore} from '../store/store';
 import {deletePost} from '../store/actions';
 import {TEXT_BUTTON} from './index';
 import {TopBarButtons} from '../topBarButtonsConstants';
+import {updateProps} from '../navigation';
 
 interface ViewPostPropsInterface extends NavigationComponentProps {
-  post: PostValueInterface;
+  postId: number;
   screenTitle?: string;
 }
 
-const VIewPost = ({componentId, post}: ViewPostPropsInterface): JSX.Element => {
-  const {id, text, image} = post;
+const VIewPost = ({
+  componentId,
+  postId,
+}: ViewPostPropsInterface): JSX.Element => {
+  const post: PostValueInterface = useConnect(postsStore.getPost, [postId]);
+
+  const {text, image} = post;
+
+  useEffect(() => {
+    updateProps('viewPost.edit', {
+      postToEdit: post,
+    });
+  }, [post]);
 
   const deleteHandler = () => {
-    deletePost(id);
+    deletePost(postId);
     popScreen(componentId);
     Alert.alert('The post was deleted!');
   };
@@ -32,7 +46,7 @@ const VIewPost = ({componentId, post}: ViewPostPropsInterface): JSX.Element => {
   );
 };
 
-VIewPost.options = ({screenTitle, post}: ViewPostPropsInterface) => {
+VIewPost.options = ({screenTitle}: ViewPostPropsInterface) => {
   const {EDIT} = TopBarButtons;
   return {
     topBar: {
@@ -46,7 +60,6 @@ VIewPost.options = ({screenTitle, post}: ViewPostPropsInterface) => {
             name: TEXT_BUTTON,
             passProps: {
               name: EDIT,
-              postToEdit: post,
             },
           },
         },
