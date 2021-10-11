@@ -87,12 +87,10 @@ const styles = StyleSheet.create({
     paddingTop: 50,
   },
   image: {
-    width: 55,
-    height: 55,
-    //    width: '85%',
-    //    height: '30%',
+    width: '85%',
+    height: '30%',
     borderRadius: 5,
-    //    marginBottom: 25,
+    marginBottom: 25,
   },
   textBox: {
     height: '50%',

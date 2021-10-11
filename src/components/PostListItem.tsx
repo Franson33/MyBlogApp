@@ -18,11 +18,13 @@ const PostListItem = (parentComponentId: string, item: PostValueInterface) => {
       {
         animations: {
           push: {
-            sharedElementTransitions: {
-              fromId: `image${id}`,
-              toId: `image${id}Dest`,
-              interpolation: {type: 'linear'},
-            },
+            sharedElementTransitions: [
+              {
+                fromId: `image${id}`,
+                toId: `image${id}Dest`,
+                interpolation: {type: 'linear'},
+              },
+            ],
           },
         },
       },
