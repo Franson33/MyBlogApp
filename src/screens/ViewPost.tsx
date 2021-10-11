@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {View, Text, Image, StyleSheet, Button, Alert} from 'react-native';
+import {View, Text, Image, StyleSheet, Button} from 'react-native';
 import {NavigationComponentProps} from 'react-native-navigation';
 import {popScreen} from '../navigation';
 import {PostValueInterface} from '../store/store';
@@ -41,12 +41,15 @@ const VIewPost = ({
   const deleteHandler = () => {
     deletePost(postId);
     popScreen(componentId);
-    Alert.alert('The post was deleted!');
   };
 
   return (
     <View style={styles.container}>
-      <Image style={styles.image} source={{uri: image}} />
+      <Image
+        nativeID={`image${postId}Dest`}
+        style={styles.image}
+        source={{uri: image}}
+      />
       <View style={styles.textBox}>
         <Text>{text}</Text>
       </View>
@@ -84,10 +87,12 @@ const styles = StyleSheet.create({
     paddingTop: 50,
   },
   image: {
-    width: '85%',
-    height: '30%',
-    borderRadius: 15,
-    marginBottom: 25,
+    width: 55,
+    height: 55,
+    //    width: '85%',
+    //    height: '30%',
+    borderRadius: 5,
+    //    marginBottom: 25,
   },
   textBox: {
     height: '50%',
