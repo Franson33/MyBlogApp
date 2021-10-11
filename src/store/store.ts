@@ -28,13 +28,23 @@ const getters = remx.getters({
 
 const setters = remx.setters({
   setPosts(newPosts: PostValueInterface[]) {
-    return (state.posts = newPosts);
+    state.posts = newPosts;
   },
   addPost(newPost: PostValueInterface) {
-    return [...state.posts, newPost];
+    [...state.posts, newPost];
   },
   deletePost(id: number) {
-    return (state.posts = state.posts.filter(post => post.id !== id));
+    state.posts = state.posts.filter(post => post.id !== id);
+  },
+  updatePost(post: PostValueInterface) {
+    state.posts = state.posts.map(item => {
+      return item.id !== post.id
+        ? item
+        : {
+            ...item,
+            ...post,
+          };
+    });
   },
 });
 

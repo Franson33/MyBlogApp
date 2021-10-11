@@ -1,29 +1,24 @@
-import {baseUrl} from '../api/api';
-import {postsStore} from './store';
-import {PostValueInterface} from './store';
+import * as API from '../api/api';
+import {postsStore, PostValueInterface} from './store';
 
 export const fetchPosts = async () => {
-  const response = await fetch(baseUrl);
-  const posts = await response.json();
+  const posts = await API.fetchPosts();
   postsStore.setPosts(posts);
 };
 
 export const addPost = async (newPost: PostValueInterface) => {
-  const response = await fetch(baseUrl, {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(newPost),
-  });
-  const postToAdd = await response.json();
+  const postToAdd = await API.addPost(newPost);
+  console.log(postToAdd);
+
   postsStore.addPost(postToAdd);
 };
 
+export const updatePost = async (post: PostValueInterface) => {
+  const postToUpdate = await API.updatePost(post);
+  postsStore.updatePost(postToUpdate);
+};
+
 export const deletePost = async (id: number) => {
-  await fetch(baseUrl + `/${id}`, {
-    method: 'DELETE',
-  });
+  await API.deletePost(id);
   postsStore.deletePost(id);
 };

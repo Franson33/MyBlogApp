@@ -8,11 +8,10 @@ import {postsStore} from '../store/store';
 import {deletePost} from '../store/actions';
 import {TEXT_BUTTON} from './index';
 import {TopBarButtons} from '../topBarButtonsConstants';
-import {updateProps} from '../navigation';
+import {updateProps, mergeOptions} from '../navigation';
 
 interface ViewPostPropsInterface extends NavigationComponentProps {
   postId: number;
-  screenTitle?: string;
 }
 
 const VIewPost = ({
@@ -22,6 +21,18 @@ const VIewPost = ({
   const post: PostValueInterface = useConnect(postsStore.getPost, [postId]);
 
   const {text, image} = post;
+
+  useEffect(() => {
+    console.log(`from effect ${post.title}`);
+
+    mergeOptions(componentId, {
+      topBar: {
+        title: {
+          text: post.title,
+        },
+      },
+    });
+  }, [post, componentId]);
 
   useEffect(() => {
     updateProps('viewPost.edit', {
@@ -46,13 +57,10 @@ const VIewPost = ({
   );
 };
 
-VIewPost.options = ({screenTitle}: ViewPostPropsInterface) => {
+VIewPost.options = () => {
   const {EDIT} = TopBarButtons;
   return {
     topBar: {
-      title: {
-        text: screenTitle,
-      },
       rightButtons: [
         {
           component: {

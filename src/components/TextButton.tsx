@@ -25,18 +25,16 @@ const TextButton = ({
 }: TextButtonPropsInterface) => {
   const {ADD, SAVE, CANCEL, EDIT} = TopBarButtons;
 
-  console.log('From edit button', postToEdit);
-
   const saveHandler = () => {
     const randomImageNumber = Math.floor(Math.random() * 500 + 1);
-    postsActions.addPost({
-      id: postToEdit ? postToEdit.id : (postsLength ?? 0) + 1,
-      title: postToEdit ? postToEdit.title : newPost?.title ?? '',
-      text: postToEdit ? postToEdit.text : newPost?.content ?? '',
-      image: postToEdit
-        ? postToEdit?.image
-        : `https://picsum.photos/200/200/?image=${randomImageNumber}`,
-    });
+    !!postToEdit
+      ? postsActions.updatePost(newPost)
+      : postsActions.addPost({
+          id: (postsLength ?? 0) + 1,
+          title: newPost?.title ?? '',
+          text: newPost?.text ?? '',
+          image: `https://picsum.photos/200/200/?image=${randomImageNumber}`,
+        });
     postsActions.fetchPosts();
     closeModal();
     Alert.alert(postToEdit ? 'The changes is saved!' : 'The post is saved!');

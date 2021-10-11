@@ -57,3 +57,7 @@ export const closeModal = () => {
 export const updateProps = (id: string, propsObj: any) => {
   Navigation.updateProps(id, propsObj);
 };
+
+export const mergeOptions = (id: string, propsObj: any) => {
+  Navigation.mergeOptions(id, propsObj);
+};

@@ -10,7 +10,6 @@ const PostListItem = (parentComponentId: string, item: PostValueInterface) => {
   const pressHandler = (): void =>
     pushToScreen(parentComponentId, VIEW_POST, {
       postId: id,
-      screenTitle: title,
     });
 
   return (

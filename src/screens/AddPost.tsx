@@ -6,19 +6,16 @@ import {updateProps} from '../navigation';
 import {PostValueInterface} from '../store/store';
 import {TEXT_BUTTON} from './index';
 
-export interface AddPostLocalStateInterface {
-  title: string;
-  content: string;
-}
-
 interface AddPostPropsInterface extends NavigationComponentProps {
   postToEdit?: PostValueInterface;
 }
 
 const AddPost = ({postToEdit}: AddPostPropsInterface): JSX.Element => {
-  const [inputValue, setInputValue] = useState<AddPostLocalStateInterface>({
+  const [inputValue, setInputValue] = useState<PostValueInterface>({
+    id: postToEdit?.id ?? 0,
     title: postToEdit?.title ?? '',
-    content: postToEdit?.text ?? '',
+    text: postToEdit?.text ?? '',
+    image: postToEdit?.image ?? '',
   });
 
   const inputValueHandler = (text: string, field: string): void => {
@@ -30,7 +27,7 @@ const AddPost = ({postToEdit}: AddPostPropsInterface): JSX.Element => {
 
   useEffect(() => {
     updateProps('addPost.save', {
-      enabled: !!inputValue.content || !!inputValue.title ? true : false,
+      enabled: !!inputValue.text || !!inputValue.title ? true : false,
     });
   }, [inputValue]);
 
@@ -53,8 +50,8 @@ const AddPost = ({postToEdit}: AddPostPropsInterface): JSX.Element => {
         placeholder={'This is the beginning of a great post!'}
         style={styles.inputContent}
         multiline={true}
-        value={inputValue.content}
-        onChangeText={newValue => inputValueHandler(newValue, 'content')}
+        value={inputValue.text}
+        onChangeText={newValue => inputValueHandler(newValue, 'text')}
       />
     </View>
   );
