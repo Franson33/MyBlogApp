@@ -47,7 +47,9 @@ const VIewPost = ({
   return (
     <View style={styles.container}>
       <Image style={styles.image} source={{uri: image}} />
-      <Text>{text}</Text>
+      <View style={styles.textBox}>
+        <Text>{text}</Text>
+      </View>
       <View style={styles.button}>
         <Button title={'Delete'} onPress={deleteHandler} />
       </View>
@@ -77,13 +79,18 @@ VIewPost.options = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'space-evenly',
     alignItems: 'center',
     paddingHorizontal: 20,
+    paddingTop: 50,
   },
   image: {
-    width: '80%',
+    width: '85%',
     height: '30%',
+    borderRadius: 15,
+    marginBottom: 25,
+  },
+  textBox: {
+    height: '50%',
   },
   button: {
     width: '80%',
