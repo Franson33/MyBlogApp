@@ -5,21 +5,18 @@ import {showModal, closeModal} from '../navigation';
 import {TopBarButtons} from '../topBarButtonsConstants';
 import {ADD_POST} from '../screens/index';
 import * as postsActions from '../store/actions';
-import {AddPostLocalStateInterface} from '../screens/AddPost';
 import {PostValueInterface} from '../store/store';
 
 interface TextButtonPropsInterface extends NavigationComponentProps {
   name: string;
   enabled?: boolean;
-  postsLength?: number;
-  newPost?: AddPostLocalStateInterface;
+  newPost: PostValueInterface;
   postToEdit?: PostValueInterface;
 }
 
 const TextButton = ({
   name,
   enabled,
-  postsLength,
   newPost,
   postToEdit,
 }: TextButtonPropsInterface) => {
@@ -27,10 +24,11 @@ const TextButton = ({
 
   const saveHandler = () => {
     const randomImageNumber = Math.floor(Math.random() * 500 + 1);
-    !!postToEdit
+    const randomId = Date.now();
+    postToEdit
       ? postsActions.updatePost(newPost)
       : postsActions.addPost({
-          id: (postsLength ?? 0) + 1,
+          id: randomId,
           title: newPost?.title ?? '',
           text: newPost?.text ?? '',
           image: `https://picsum.photos/200/200/?image=${randomImageNumber}`,

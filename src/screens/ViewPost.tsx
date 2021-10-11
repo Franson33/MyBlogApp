@@ -23,8 +23,6 @@ const VIewPost = ({
   const {text, image} = post;
 
   useEffect(() => {
-    console.log(`from effect ${post.title}`);
-
     mergeOptions(componentId, {
       topBar: {
         title: {

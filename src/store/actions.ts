@@ -8,8 +8,6 @@ export const fetchPosts = async () => {
 
 export const addPost = async (newPost: PostValueInterface) => {
   const postToAdd = await API.addPost(newPost);
-  console.log(postToAdd);
-
   postsStore.addPost(postToAdd);
 };
 
