@@ -1,3 +1,4 @@
+import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 import {Navigation} from 'react-native-navigation';
 import App from '../../App';
 import PostsList from './PostsList';
@@ -41,6 +42,10 @@ export const screens: ScreenItemInterface[] = new Array(
 
 export const registerScreens = (): void => {
   screens.forEach(({key, Screen}) =>
-    Navigation.registerComponent(key, () => Screen),
+    Navigation.registerComponent(
+      key,
+      () => gestureHandlerRootHOC(Screen),
+      () => Screen,
+    ),
   );
 };

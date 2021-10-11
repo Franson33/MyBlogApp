@@ -1,5 +1,5 @@
 import React from 'react';
-import {TouchableOpacity, Text, StyleSheet, Alert} from 'react-native';
+import {TouchableOpacity, Text, StyleSheet} from 'react-native';
 import {NavigationComponentProps} from 'react-native-navigation';
 import {showModal, closeModal} from '../navigation';
 import {TopBarButtons} from '../topBarButtonsConstants';
@@ -35,7 +35,6 @@ const TextButton = ({
         });
     postsActions.fetchPosts();
     closeModal();
-    Alert.alert(postToEdit ? 'The changes is saved!' : 'The post is saved!');
   };
 
   const pressHandler = (): void | null => {

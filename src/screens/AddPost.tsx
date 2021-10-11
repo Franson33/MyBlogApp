@@ -1,27 +1,32 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, StyleSheet, TextInput} from 'react-native';
+import {Colors, Typography} from 'react-native-ui-lib';
 import {NavigationComponentProps} from 'react-native-navigation';
 import {TopBarButtons} from '../topBarButtonsConstants';
 import {updateProps} from '../navigation';
 import {PostValueInterface} from '../store/store';
 import {TEXT_BUTTON} from './index';
 
+interface PostLocalValueInterface {
+  title: string;
+  text: string;
+}
+
 interface AddPostPropsInterface extends NavigationComponentProps {
   postToEdit?: PostValueInterface;
 }
 
 const AddPost = ({postToEdit}: AddPostPropsInterface): JSX.Element => {
-  const [inputValue, setInputValue] = useState<PostValueInterface>({
-    id: postToEdit?.id ?? 0,
+  const [inputValue, setInputValue] = useState<PostLocalValueInterface>({
     title: postToEdit?.title ?? '',
     text: postToEdit?.text ?? '',
-    image: postToEdit?.image ?? '',
   });
+  const {title, text} = inputValue;
 
-  const inputValueHandler = (text: string, field: string): void => {
+  const inputValueHandler = (newText: string, field: string): void => {
     setInputValue({
       ...inputValue,
-      [field]: text,
+      [field]: newText,
     });
   };
 
@@ -33,9 +38,9 @@ const AddPost = ({postToEdit}: AddPostPropsInterface): JSX.Element => {
 
   useEffect(() => {
     updateProps('addPost.save', {
-      newPost: inputValue,
+      newPost: {...postToEdit, title, text},
     });
-  }, [inputValue]);
+  }, [postToEdit, title, text]);
 
   return (
     <View style={styles.container}>
@@ -44,14 +49,16 @@ const AddPost = ({postToEdit}: AddPostPropsInterface): JSX.Element => {
         placeholder={'Add a Catchy Title!'}
         style={styles.inputTitle}
         value={inputValue.title}
-        onChangeText={newValue => inputValueHandler(newValue, 'title')}
+        onChangeText={(newValue: string) =>
+          inputValueHandler(newValue, 'title')
+        }
       />
       <TextInput
         placeholder={'This is the beginning of a great post!'}
         style={styles.inputContent}
         multiline={true}
         value={inputValue.text}
-        onChangeText={newValue => inputValueHandler(newValue, 'text')}
+        onChangeText={(newValue: string) => inputValueHandler(newValue, 'text')}
       />
     </View>
   );
@@ -97,6 +104,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   title: {
+    ...Typography.text40,
     marginBottom: 10,
   },
   inputTitle: {
