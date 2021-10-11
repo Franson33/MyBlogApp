@@ -51,7 +51,7 @@ const VIewPost = ({
         source={{uri: image}}
       />
       <View style={styles.textBox}>
-        <Text>{text}</Text>
+        <Text nativeID={`text${postId}Dest`}>{text}</Text>
       </View>
       <View style={styles.button}>
         <Button title={'Delete'} onPress={deleteHandler} />

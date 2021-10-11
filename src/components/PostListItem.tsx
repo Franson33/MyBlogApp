@@ -24,6 +24,11 @@ const PostListItem = (parentComponentId: string, item: PostValueInterface) => {
                 toId: `image${id}Dest`,
                 interpolation: {type: 'linear'},
               },
+              {
+                fromId: `text${id}`,
+                toId: `text${id}Dest`,
+                interpolation: {type: 'linear'},
+              },
             ],
           },
         },
@@ -39,7 +44,11 @@ const PostListItem = (parentComponentId: string, item: PostValueInterface) => {
       />
       <View style={styles.textBox}>
         <Text text70>{title}</Text>
-        <Text text90 numberOfLines={1} style={styles.content}>
+        <Text
+          nativeID={`text${id}`}
+          text90
+          numberOfLines={1}
+          style={styles.content}>
           {text}
         </Text>
       </View>
