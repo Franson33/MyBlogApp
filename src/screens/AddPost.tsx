@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, StyleSheet, TextInput} from 'react-native';
-import {Colors, Typography} from 'react-native-ui-lib';
+import {Colors, Typography, TextField} from 'react-native-ui-lib';
 import {NavigationComponentProps} from 'react-native-navigation';
 import {TopBarButtons} from '../topBarButtonsConstants';
 import {updateProps} from '../navigation';
@@ -45,15 +45,21 @@ const AddPost = ({postToEdit}: AddPostPropsInterface): JSX.Element => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Add Post</Text>
-      <TextInput
+      <TextField
+        text70
+        floatingPlaceholder
+        floatOnFocus
         placeholder={'Add a Catchy Title!'}
-        style={styles.inputTitle}
+        containerStyle={styles.inputTitle}
         value={inputValue.title}
         onChangeText={(newValue: string) =>
           inputValueHandler(newValue, 'title')
         }
       />
-      <TextInput
+      <TextField
+        text70
+        floatingPlaceholder
+        floatOnFocus
         placeholder={'This is the beginning of a great post!'}
         style={styles.inputContent}
         multiline={true}
@@ -105,19 +111,15 @@ const styles = StyleSheet.create({
   },
   title: {
     ...Typography.text40,
-    marginBottom: 10,
+    color: Colors.purple10,
+    marginBottom: 25,
   },
   inputTitle: {
-    height: 40,
-    paddingBottom: 15,
-    backgroundColor: '#fff',
     borderRadius: 5,
   },
   inputContent: {
     height: 150,
-    marginTop: 10,
     textAlignVertical: 'top',
-    backgroundColor: '#fff',
     borderRadius: 5,
   },
 });
