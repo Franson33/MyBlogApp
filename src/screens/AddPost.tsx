@@ -3,7 +3,7 @@ import {View, Text, StyleSheet, TextInput} from 'react-native';
 import {Colors, Typography, TextField} from 'react-native-ui-lib';
 import {NavigationComponentProps} from 'react-native-navigation';
 import {TopBarButtons} from '../topBarButtonsConstants';
-import {updateProps} from '../navigation';
+import {updateProps, mergeOptions} from '../navigation';
 import {PostValueInterface} from '../store/store';
 import {TEXT_BUTTON} from './index';
 
@@ -16,7 +16,11 @@ interface AddPostPropsInterface extends NavigationComponentProps {
   postToEdit?: PostValueInterface;
 }
 
-const AddPost = ({postToEdit}: AddPostPropsInterface): JSX.Element => {
+const AddPost = ({
+  componentId,
+  postToEdit,
+}: AddPostPropsInterface): JSX.Element => {
+  const screenTitle = postToEdit ? 'Edit Post' : 'Add Post';
   const [inputValue, setInputValue] = useState<PostLocalValueInterface>({
     title: postToEdit?.title ?? '',
     text: postToEdit?.text ?? '',
@@ -42,9 +46,19 @@ const AddPost = ({postToEdit}: AddPostPropsInterface): JSX.Element => {
     });
   }, [postToEdit, title, text]);
 
+  useEffect(() => {
+    mergeOptions(componentId, {
+      topBar: {
+        title: {
+          text: screenTitle,
+        },
+      },
+    });
+  }, [componentId, screenTitle]);
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Add Post</Text>
+      <Text style={styles.title}>{screenTitle}</Text>
       <TextField
         text70
         floatingPlaceholder

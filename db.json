@@ -7,12 +7,6 @@
       "image": "http://picsum.photos/200/200/?image=1"
     },
     {
-      "id": 3,
-      "title": "TestPost2",
-      "text": "This post is made to test my code!",
-      "image": "https://picsum.photos/200/200/?image=241"
-    },
-    {
       "id": 4,
       "title": "TestNumber-2",
       "text": "This is my test post number two, made with purpose to test that my code is working well!",
@@ -23,6 +17,18 @@
       "title": "NumberThree",
       "text": "One more post made to test!",
       "image": "https://picsum.photos/200/200/?image=490"
+    },
+    {
+      "id": 1634024130338,
+      "title": "The post about Nadiia",
+      "text": "This post is about my wife Nadiia.",
+      "image": "https://picsum.photos/200/200/?image=478"
+    },
+    {
+      "id": 1634038135437,
+      "title": "Post About Anton",
+      "text": "Anton is really nice guy))",
+      "image": "https://picsum.photos/200/200/?image=141"
     }
   ]
 }

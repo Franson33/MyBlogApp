@@ -1,5 +1,11 @@
 import React from 'react';
-import {View, Image, StyleSheet, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  Dimensions,
+} from 'react-native';
 import {Colors, Text} from 'react-native-ui-lib';
 import {PostValueInterface} from '../store/store';
 import {pushToScreen} from '../navigation';
@@ -8,7 +14,10 @@ import {VIEW_POST} from '../screens/index';
 const PostListItem = (parentComponentId: string, item: PostValueInterface) => {
   const {id, title, text, image} = item;
 
-  const pressHandler = (): void =>
+  const pressHandler = (): void => {
+    const screenWidth = Dimensions.get('window').width;
+    const DURATION = 300;
+
     pushToScreen(
       parentComponentId,
       VIEW_POST,
@@ -22,18 +31,27 @@ const PostListItem = (parentComponentId: string, item: PostValueInterface) => {
               {
                 fromId: `image${id}`,
                 toId: `image${id}Dest`,
-                interpolation: {type: 'linear'},
+                interpolation: {type: 'accelerate'},
               },
+            ],
+            elementTransitions: [
               {
-                fromId: `text${id}`,
-                toId: `text${id}Dest`,
-                interpolation: {type: 'linear'},
+                id: 'viewPostBackground',
+                alpha: {
+                  from: 0,
+                  duration: DURATION,
+                },
+                translationX: {
+                  from: screenWidth,
+                  duration: DURATION,
+                },
               },
             ],
           },
         },
       },
     );
+  };
 
   return (
     <TouchableOpacity style={styles.itemContainer} onPress={pressHandler}>

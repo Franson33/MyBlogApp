@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {View, Text, Image, StyleSheet, Button} from 'react-native';
 import {NavigationComponentProps} from 'react-native-navigation';
+import {Colors} from 'react-native-ui-lib';
 import {popScreen} from '../navigation';
 import {PostValueInterface} from '../store/store';
 import {useConnect} from 'remx';
@@ -44,19 +45,22 @@ const VIewPost = ({
   };
 
   return (
-    <View style={styles.container}>
-      <Image
-        nativeID={`image${postId}Dest`}
-        style={styles.image}
-        source={{uri: image}}
-      />
-      <View style={styles.textBox}>
-        <Text nativeID={`text${postId}Dest`}>{text}</Text>
+    <>
+      <View nativeID={'viewPostBackground'} style={styles.background} />
+      <View style={styles.container}>
+        <Image
+          nativeID={`image${postId}Dest`}
+          style={styles.image}
+          source={{uri: image}}
+        />
+        <View style={styles.textBox}>
+          <Text nativeID={`text${postId}Dest`}>{text}</Text>
+        </View>
+        <View style={styles.button}>
+          <Button title={'Delete'} onPress={deleteHandler} />
+        </View>
       </View>
-      <View style={styles.button}>
-        <Button title={'Delete'} onPress={deleteHandler} />
-      </View>
-    </View>
+    </>
   );
 };
 
@@ -88,15 +92,22 @@ const styles = StyleSheet.create({
   },
   image: {
     width: '85%',
-    height: '30%',
+    height: '40%',
     borderRadius: 5,
     marginBottom: 25,
   },
   textBox: {
-    height: '50%',
+    height: '40%',
   },
   button: {
     width: '80%',
+    color: Colors.blue60,
+  },
+  background: {
+    position: 'absolute',
+    width: '100%',
+    height: '25%',
+    backgroundColor: Colors.blue70,
   },
 });
 

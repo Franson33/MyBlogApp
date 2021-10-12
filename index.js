@@ -22,9 +22,6 @@ Navigation.events().registerAppLaunchedListener(() => {
         color: '#000',
         alignment: 'center',
       },
-      background: {
-        color: '#fff',
-      },
       backButton: {
         color: '#000',
       },

@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {NavigationComponentProps} from 'react-native-navigation';
 import {View, StyleSheet, FlatList} from 'react-native';
-import {Text} from 'react-native-ui-lib';
+import {Text, Colors} from 'react-native-ui-lib';
 import {useConnect} from 'remx';
 import {updateProps} from '../navigation';
 import {TopBarButtons} from '../topBarButtonsConstants';
@@ -60,8 +60,10 @@ PostsList.options = () => {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     paddingHorizontal: 20,
     alignItems: 'center',
+    backgroundColor: Colors.dark70,
   },
   list: {
     width: '100%',
