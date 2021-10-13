@@ -122,6 +122,7 @@ const styles = StyleSheet.create({
   container: {
     paddingTop: 20,
     paddingHorizontal: 20,
+    backgroundColor: Colors.green70,
   },
   title: {
     ...Typography.text40,
